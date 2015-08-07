@@ -43,8 +43,9 @@ describe Deck do
   end
 
   describe "#take" do
-    let(:taken_cards) { deck.cards[0..1] }
+    let(:taken_cards) { [1, 2] }
     it "takes the first 'n' cards from the top of the deck" do
+      allow(deck).to receive(:cards).and_return([1, 2, 3, 4])
       expect(taken_cards).to eq(deck.take(2))
     end
 
