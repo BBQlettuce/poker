@@ -20,7 +20,9 @@ describe Deck do
 
   describe "::all_cards" do
     let(:cards_value_suit) { Deck.all_cards.map { |c| [c.value, c.suit] } }
-    let(:unique_cards_value_suit) { Deck.all_cards.map { |c| [c.value, c.suit] }.uniq }
+    let(:unique_cards_value_suit) do
+      Deck.all_cards.map { |c| [c.value, c.suit] }.uniq
+    end
 
     it "returns an array of 52 cards" do
       expect(Deck.all_cards.length).to eq(52)
@@ -35,7 +37,8 @@ describe Deck do
 
   describe "#count" do
     it "returns the number of cards in the deck" do
-      expect(deck.count).to eq(52)
+      allow(deck).to receive(:cards).and_return([1,2,3])
+      expect(deck.count).to eq(3)
     end
   end
 
@@ -45,13 +48,9 @@ describe Deck do
       expect(taken_cards).to eq(deck.take(2))
     end
 
-    context "when cards are taken" do
-      before(:each) do
-        deck.take(2)
-      end
-      it "removes taken cards from the deck" do
-        expect(deck.cards.count).to eq(50)
-      end
+    it "removes taken cards from the deck" do
+      deck.take(2)
+      expect(deck.cards.count).to eq(50)
     end
   end
 
