@@ -55,8 +55,23 @@ class Hand
     end
   end
 
+  def all_same_suit?
+    suits = cards.map { |card| card.suit }
+    suits.uniq.length == 1
+  end
+
+  def in_order?
+    values = cards.map { |card| card.to_score }
+    sorted_uniqs = values.sort.uniq
+    sorted_uniqs.length == 5 && sorted_uniqs.last - sorted_uniqs.first - 5
+  end
+
+  def have_ace?
+    cards.any? { |card| card.value == :ace }
+  end
+  
   def royal_flush?
-    
+
   end
   def straight_flush?
   end
