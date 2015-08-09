@@ -56,15 +56,18 @@ describe Deck do
   end
 
   describe "#return" do
-    context "when cards are returned" do
-      before(:each) do
-        deck.return(random_cards)
-      end
-      it "returns the cards back to the deck" do
-        expect(deck.cards[-2..-1]).to eq(random_cards)
-      end
+    it "returns cards back to the deck" do
+      deck.return(random_cards)
+      expect(deck.cards[-2..-1]).to eq(random_cards)
     end
   end
 
+  describe "#shuffle" do
+    it "shuffles the deck" do
+      allow(deck).to receive(:cards).and_return((1..100).to_a)
+      deck.shuffle
+      expect(deck.cards).not_to eq((1..100).to_a)
+    end
+  end
 
 end

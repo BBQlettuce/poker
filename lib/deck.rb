@@ -31,4 +31,8 @@ class Deck
     @cards += returned_cards
   end
 
+  def shuffle
+    self.cards.shuffle!
+  end
+
 end
