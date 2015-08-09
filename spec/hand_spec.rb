@@ -156,58 +156,62 @@ describe Hand do
         Card.new(:diamonds, :eight),
         Card.new(:hearts, :three)]) }
 
-    describe "#identify_combo" do
+    describe "#identify_combo and returns a score" do
       it "identifies royal flush" do
-        expect(royal_flush.identify_combo).to eq("royal flush")
+        expect(royal_flush.identify_combo).to eq(9)
       end
       it "identifies straight flush (excluding royal flush)" do
-        expect(straight_flush.identify_combo).to eq("straight flush")
+        expect(straight_flush.identify_combo).to eq(8)
       end
       it "identifies four of a kind" do
-        expect(four_of_a_kind.identify_combo).to eq("four of a kind")
+        expect(four_of_a_kind.identify_combo).to eq(7)
       end
       it "identifies full house" do
-        expect(full_house.identify_combo).to eq("full_house")
+        expect(full_house.identify_combo).to eq(6)
       end
       it "identifies flush (excluding royal and straight flush)" do
-        expect(flush.identify_combo).to eq("flush")
+        expect(flush.identify_combo).to eq(5)
       end
       it "identifies straight (excluding royal and straight flush)" do
-        expect(straight.identify_combo).to eq("straight")
+        expect(straight.identify_combo).to eq(4)
       end
       it "identifies three of a kind" do
-        expect(three_of_a_kind.identify_combo).to eq("three of a kind")
+        expect(three_of_a_kind.identify_combo).to eq(3)
       end
       it "identifies two pair" do
-        expect(two_pair.identify_combo).to eq("two pair")
+        expect(two_pair.identify_combo).to eq(2)
       end
       it "identifies one pair" do
-        expect(one_pair.identify_combo).to eq("one_pair")
+        expect(one_pair.identify_combo).to eq(1)
       end
-      #it "identifies high card"
+      it "identifies junk" do
+        expect(junk.identify_combo).to eq(0)
+      end
     end
 
     describe "#beats?" do
       it "returns true if hand beats other hand" do
         expect(royal_flush.beats?(straight_flush)).to be true
-        expect(straight_flush.beats?(weaker_straight_flush)).to be true
         expect(weaker_straight_flush.beats?(four_of_a_kind)).to be true
-        expect(four_of_a_kind.beats?(weaker_four_of_a_kind)).to be true
         expect(weaker_four_of_a_kind.beats?(full_house)).to be true
-        expect(full_house.beats?(weaker_full_house)).to be true
         expect(weaker_full_house.beats?(flush)).to be true
-        expect(flush.beats?(weaker_flush)).to be true
         expect(weaker_flush.beats?(straight)).to be true
-        expect(straight.beats?(weaker_straight)).to be true
         expect(weaker_straight.beats?(three_of_a_kind)).to be true
-        expect(three_of_a_kind.beats?(weaker_three_of_a_kind)).to be true
         expect(weaker_three_of_a_kind.beats?(two_pair)).to be true
-        expect(two_pair.beats?(weaker_two_pair)).to be true
         expect(weaker_two_pair.beats?(one_pair)).to be true
-        expect(one_pair.beats?(weaker_one_pair)).to be true
         expect(weaker_one_pair.beats?(junk)).to be true
-        expect(junk.beats?(weaker_junk)).to be true
       end
+
+      it "can break ties when hands are of equal score"
+        expect(weaker_straight_flush.beats?(straight_flush)).to be false
+        expect(weaker_four_of_a_kind.beats?(four_of_a_kind)).to be false
+        expect(weaker_full_house.beats?(full_house)).to be false
+        expect(weaker_flush.beats?(flush)).to be false
+        expect(weaker_straight.beats?(straight)).to be false
+        expect(weaker_three_of_a_kind.beats?(three_of_a_kind)).to be false
+        expect(weaker_two_pair.beats?(two_pair)).to be false
+        expect(weaker_one_pair.beats?(one_pair)).to be false
+        expect(weaker_junk.beats?(junk)).to be false
 
     end
 
