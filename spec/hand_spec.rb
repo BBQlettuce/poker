@@ -48,71 +48,81 @@ describe Hand do
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
     let(:straight_flush) { Hand.new(
-      [Card.new(:hearts, :ace),
+      [Card.new(:hearts, :nine),
         Card.new(:hearts, :king),
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
     let(:four_of_a_kind) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
-        Card.new(:hearts, :jack),
+        Card.new(:spades, :ace),
+        Card.new(:clubs, :ace),
+        Card.new(:diamonds, :ace),
         Card.new(:hearts, :ten)]) }
     let(:full_house) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
+        Card.new(:spades, :ace),
+        Card.new(:clubs, :ace),
         Card.new(:hearts, :jack),
-        Card.new(:hearts, :ten)]) }
+        Card.new(:diamonds, :jack)]) }
     let(:flush) { Hand.new(
       [Card.new(:hearts, :ace),
         Card.new(:hearts, :king),
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
-        Card.new(:hearts, :ten)]) }
+        Card.new(:hearts, :three)]) }
     let(:straight) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
-        Card.new(:hearts, :jack),
+        Card.new(:diamonds, :king),
+        Card.new(:clubs, :queen),
+        Card.new(:spades, :jack),
         Card.new(:hearts, :ten)]) }
     let(:three_of_a_kind) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
+        Card.new(:spades, :ace),
+        Card.new(:clubs, :ace),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
     let(:two_pair) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
-        Card.new(:hearts, :jack),
+        Card.new(:spades, :ace),
+        Card.new(:hearts, :jack,
+        Card.new(:clubs, :jack),
         Card.new(:hearts, :ten)]) }
     let(:one_pair) { Hand.new(
       [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
+        Card.new(:spades :ace),
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
-    let(:high_card) { Hand.new(
-      [Card.new(:hearts, :ace),
-        Card.new(:hearts, :king),
-        Card.new(:hearts, :queen),
-        Card.new(:hearts, :jack),
-        Card.new(:hearts, :ten)]) }
+    # let(:high_card) { Hand.new(
+    #   [Card.new(:hearts, :ace),
+    #     Card.new(:spades, :king),
+    #     Card.new(:clubs, :queen),
+    #     Card.new(:diamonds, :eight),
+    #     Card.new(:hearts, :three)]) }
 
     describe "#identify_combo" do
-      it "identifies royal flush"
+      it "identifies royal flush" do
+        expect(royal_flush.identify_combo).to eq("royal flush")
+      end
       it "identifies straight flush (excluding royal flush)"
+        expect(straight_flush.identify_combo).to eq("straight flush")
       it "identifies four of a kind"
+        expect(four_of_a_kind.identify_combo).to eq("four of a kind")
       it "identifies full house"
+        expect(full_house.identify_combo).to eq("full_house")
       it "identifies flush (excluding royal and straight flush)"
+        expect(flush.identify_combo).to eq("flush")
       it "identifies straight (excluding royal and straight flush)"
+        expect(straight.identify_combo).to eq("straight")
       it "identifies three of a kind"
+        expect(three_of_a_kind.identify_combo).to eq("three of a kind")
       it "identifies two pair"
+        expect(two_pair.identify_combo).to eq("two pair")
       it "identifies one pair"
-      it "identifies high card"
+        expect(one_pair.identify_combo).to eq("one_pair")
+      #it "identifies high card"
     end
 
   end
