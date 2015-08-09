@@ -11,7 +11,7 @@ class Hand
   end
 
   def drop_cards(indices, deck)
-    raise if indices.any? { |idx| !idx.between?(0,4) }
+    raise if !indices.all? { |idx| idx.between?(0,4) }
     cards_to_return = []
     indices.each { |idx| cards_to_return << cards[idx] }
     deck.return(cards_to_return)

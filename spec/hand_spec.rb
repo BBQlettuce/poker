@@ -26,17 +26,14 @@ describe Hand do
 
   describe "#drop_cards" do
     let(:dummy_deck) { double(:Deck) }
-    it "removes cards from the hand based on index" do
+    it "removes cards from the hand based on index, and returns to deck" do
       allow(dummy_hand).to receive(:cards).and_return([1,2,3,4,5])
+      expect(dummy_deck).to receive(:return)
       dummy_hand.drop_cards([1,3], dummy_deck)
       expect(dummy_hand.cards).to eq([1,3,5])
     end
     it "accepts only indeces from 0 to 4" do
-      expect(dummy_hand.drop_cards([6], dummy_deck)).to raise_error
-    end
-    it "returns the cards to the deck" do
-      expect(dummy_deck).to receive(:return)
-      dummy_hand.drop_cards([1], dummy_deck)
+      expect{ dummy_hand.drop_cards([6], dummy_deck) }.to raise_error
     end
 
   end
