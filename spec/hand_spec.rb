@@ -41,10 +41,70 @@ describe Hand do
   end
 
   context "when evaluating cards" do
+    let(:royal_flush) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:straight_flush) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:four_of_a_kind) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:full_house) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:flush) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:straight) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:three_of_a_kind) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:two_pair) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:one_pair) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:high_card) { Hand.new(
+      [Card.new(:hearts, :ace),
+        Card.new(:hearts, :king),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
 
     describe "#identify_combo" do
       it "identifies royal flush"
-      it "identifies straight flush"
+      it "identifies straight flush (excluding royal flush)"
       it "identifies four of a kind"
       it "identifies full house"
       it "identifies flush (excluding royal and straight flush)"
