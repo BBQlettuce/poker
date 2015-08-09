@@ -156,6 +156,24 @@ describe Hand do
         Card.new(:diamonds, :eight),
         Card.new(:hearts, :three)]) }
 
+    describe "#all_same_suit?" do
+      it "can tell if cards are of the same suit" do
+        expect(flush.all_same_suit?).to be true
+      end
+    end
+
+    describe "#all_in_order?" do
+      it "can tell if cards are in order for a straight" do
+        expect(straight.all_in_order?).to be true
+      end
+    end
+
+    describe "#highest_card" do
+      it "identifies highest valued card in the hand" do
+        expect(junk.highest_card.value).to eq(:ace)
+      end
+    end
+    
     describe "#identify_combo and returns a score" do
       it "identifies royal flush" do
         expect(royal_flush.identify_combo).to eq(9)
@@ -202,7 +220,7 @@ describe Hand do
         expect(weaker_one_pair.beats?(junk)).to be true
       end
 
-      it "can break ties when hands are of equal score"
+      it "can break ties when hands are of equal score" do
         expect(weaker_straight_flush.beats?(straight_flush)).to be false
         expect(weaker_four_of_a_kind.beats?(four_of_a_kind)).to be false
         expect(weaker_full_house.beats?(full_house)).to be false
@@ -212,7 +230,7 @@ describe Hand do
         expect(weaker_two_pair.beats?(two_pair)).to be false
         expect(weaker_one_pair.beats?(one_pair)).to be false
         expect(weaker_junk.beats?(junk)).to be false
-
+      end
     end
 
   end

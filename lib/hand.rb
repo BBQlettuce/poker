@@ -31,24 +31,23 @@ class Hand
   end
 
   def identify_combo
-    case self
-    when royal_flush?
+    if royal_flush?
       COMBO_TO_SCORE["royal_flush"]
-    when straight_flush?
+    elsif straight_flush?
       COMBO_TO_SCORE["straight_flush"]
-    when four_of_a_kind?
+    elsif four_of_a_kind?
       COMBO_TO_SCORE["four_of_a_kind"]
-    when full_house?
+    elsif full_house?
       COMBO_TO_SCORE["full_house"]
-    when flush?
+    elsif flush?
       COMBO_TO_SCORE["flush"]
-    when straight?
+    elsif straight?
       COMBO_TO_SCORE["straight"]
-    when three_of_a_kind?
+    elsif three_of_a_kind?
       COMBO_TO_SCORE["three_of_a_kind"]
-    when two_pair?
+    elsif two_pair?
       COMBO_TO_SCORE["two_pair"]
-    when one_pair?
+    elsif one_pair?
       COMBO_TO_SCORE["one_pair"]
     else
       COMBO_TO_SCORE["junk"]
@@ -60,33 +59,49 @@ class Hand
     suits.uniq.length == 1
   end
 
-  def in_order?
-    values = cards.map { |card| card.to_score }
+  def all_in_order?
+    values = cards.map { |card| card.score }
     sorted_uniqs = values.sort.uniq
-    sorted_uniqs.length == 5 && sorted_uniqs.last - sorted_uniqs.first - 5
+    (sorted_uniqs.length == 5) && (sorted_uniqs.last - sorted_uniqs.first == 4)
   end
 
-  def have_ace?
-    cards.any? { |card| card.value == :ace }
+  def highest_card
+    highest = nil
+    cards.each do |card|
+      highest = card if highest.nil? || highest.score < card.score
+    end
+    highest
   end
-  
+
   def royal_flush?
+    all_same_suit? && all_in_order? && highest_card.value == :ace
+  end
+
+  def straight_flush?
+    all_same_suit? && all_in_order? && highest_card.value != :ace
+  end
+
+  def four_of_a_kind?
 
   end
-  def straight_flush?
-  end
-  def four_of_a_kind?
-  end
+
   def full_house?
   end
+
   def flush?
+    all_same_suit? && !all_in_order?
   end
+
   def straight?
+    all_in_order? && !all_same_suit?
   end
+
   def three_of_a_kind?
   end
+
   def two_pair?
   end
+
   def one_pair?
   end
 

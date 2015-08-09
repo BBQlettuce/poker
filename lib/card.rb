@@ -71,7 +71,7 @@ class Card
     VALUE_STRINGS[value] + SUIT_STRINGS[suit]
   end
 
-  def to_score
+  def score
     VALUE_TO_SCORE[value]
   end
 end
