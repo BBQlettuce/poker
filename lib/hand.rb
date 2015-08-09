@@ -56,6 +56,7 @@ class Hand
   end
 
   def royal_flush?
+    
   end
   def straight_flush?
   end
