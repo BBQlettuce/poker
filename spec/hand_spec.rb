@@ -53,16 +53,34 @@ describe Hand do
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
+    let(:weaker_straight_flush) { Hand.new(
+      [Card.new(:hearts, :nine),
+        Card.new(:hearts, :eight),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
     let(:four_of_a_kind) { Hand.new(
       [Card.new(:hearts, :ace),
         Card.new(:spades, :ace),
         Card.new(:clubs, :ace),
         Card.new(:diamonds, :ace),
         Card.new(:hearts, :ten)]) }
+    let(:weaker_four_of_a_kind) { Hand.new(
+      [Card.new(:hearts, :four),
+        Card.new(:spades, :four),
+        Card.new(:clubs, :four),
+        Card.new(:diamonds, :four),
+        Card.new(:hearts, :ten)]) }
     let(:full_house) { Hand.new(
       [Card.new(:hearts, :ace),
         Card.new(:spades, :ace),
         Card.new(:clubs, :ace),
+        Card.new(:hearts, :jack),
+        Card.new(:diamonds, :jack)]) }
+    let(:weaker_full_house) { Hand.new(
+      [Card.new(:hearts, :five),
+        Card.new(:spades, :five),
+        Card.new(:clubs, :five),
         Card.new(:hearts, :jack),
         Card.new(:diamonds, :jack)]) }
     let(:flush) { Hand.new(
@@ -71,8 +89,20 @@ describe Hand do
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :three)]) }
+    let(:weaker_flush) { Hand.new(
+      [Card.new(:hearts, :six),
+        Card.new(:hearts, :deuce),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :three)]) }
     let(:straight) { Hand.new(
       [Card.new(:hearts, :ace),
+        Card.new(:diamonds, :king),
+        Card.new(:clubs, :queen),
+        Card.new(:spades, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:weaker_straight) { Hand.new(
+      [Card.new(:hearts, :nine),
         Card.new(:diamonds, :king),
         Card.new(:clubs, :queen),
         Card.new(:spades, :jack),
@@ -83,15 +113,33 @@ describe Hand do
         Card.new(:clubs, :ace),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
+    let(:weaker_three_of_a_kind) { Hand.new(
+      [Card.new(:hearts, :four),
+        Card.new(:spades, :four),
+        Card.new(:clubs, :four),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
     let(:two_pair) { Hand.new(
       [Card.new(:hearts, :ace),
         Card.new(:spades, :ace),
         Card.new(:hearts, :jack,
         Card.new(:clubs, :jack),
         Card.new(:hearts, :ten)]) }
+    let(:weaker_two_pair) { Hand.new(
+      [Card.new(:hearts, :three),
+        Card.new(:spades, :three),
+        Card.new(:hearts, :jack,
+        Card.new(:clubs, :jack),
+        Card.new(:hearts, :ten)]) }
     let(:one_pair) { Hand.new(
       [Card.new(:hearts, :ace),
         Card.new(:spades :ace),
+        Card.new(:hearts, :queen),
+        Card.new(:hearts, :jack),
+        Card.new(:hearts, :ten)]) }
+    let(:weaker_one_pair) { Hand.new(
+      [Card.new(:hearts, :seven),
+        Card.new(:spades :seven),
         Card.new(:hearts, :queen),
         Card.new(:hearts, :jack),
         Card.new(:hearts, :ten)]) }
